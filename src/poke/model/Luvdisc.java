@@ -28,4 +28,15 @@ public class Luvdisc extends Pokemon implements Water
 			return "i shall drain the life out of you, **auto wins round**";
 		}
 	}
+	public String heartStamp(boolean yaBeenStamped)
+	{
+		if (yaBeenStamped = true)
+		{
+			return "you have mah wuv";
+		}
+		else
+		{
+			return "you aren't deserving of my wuv";
+		}
+	}
 }
