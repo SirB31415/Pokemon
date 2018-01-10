@@ -39,4 +39,11 @@ public class Luvdisc extends Pokemon implements Water
 			return "you aren't deserving of my wuv";
 		}
 	}
+	protected void setup()
+	{
+		this.setAttackPoints(9999);
+		this.setCanEvolve(false);
+		this.setEnhancementModifier(1);
+		this.setHealthPoints(9999);
+	}
 }

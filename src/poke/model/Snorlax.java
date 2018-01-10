@@ -30,4 +30,11 @@ public class Snorlax extends Pokemon implements Psychic, Water
 	{
 		return 0;
 	}
+	protected void setup()
+	{
+		this.setAttackPoints(9998);
+		this.setCanEvolve(false);
+		this.setEnhancementModifier(.999);
+		this.setHealthPoints(9998);
+	}
 }

@@ -26,5 +26,11 @@ public class Charizard extends Pokemon implements Fire
 	{
 		return "I'm making such a scary face rn, you should be very scared, I win this fight.";
 	}
-	
+	protected void setup()
+	{
+		this.setAttackPoints(9001);
+		this.setCanEvolve(false);
+		this.setEnhancementModifier(.69);
+		this.setHealthPoints(420);
+	}
 }

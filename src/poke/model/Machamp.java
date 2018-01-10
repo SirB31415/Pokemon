@@ -25,4 +25,11 @@ public class Machamp extends Pokemon implements Psychic
 	{
 		return ImmaHeadButtYa*3;
 	}
+	protected void setup()
+	{
+		this.setAttackPoints(666);
+		this.setCanEvolve(false);
+		this.setEnhancementModifier(.666);
+		this.setHealthPoints(666);
+	}
 }

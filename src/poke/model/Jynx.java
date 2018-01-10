@@ -39,5 +39,12 @@ public class Jynx extends Pokemon implements Psychic
 			return "you should feel lucky you musn't bear the wrath of the snores";
 		}
 	}
+	protected void setup()
+	{
+		this.setAttackPoints(69);
+		this.setCanEvolve(false);
+		this.setEnhancementModifier(.69);
+		this.setHealthPoints(69);
+	}
 }
 

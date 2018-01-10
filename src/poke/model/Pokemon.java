@@ -129,4 +129,5 @@ public abstract class Pokemon
 	{
 		this.canEvolve = canEvolve;
 	}
+
 }

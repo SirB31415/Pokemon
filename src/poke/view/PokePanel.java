@@ -7,6 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import java
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -41,4 +47,154 @@ public class PokePanel extends JPanel
 	private JPanel secondType;
 	private JPanel thirdType;
 	private JPanel fourthType;
+	
+	public void updatePokedexInfo(int index)
+	{
+		nameField.setText(appController.getPokedex().get(index).getName());
+		evolvableBox.setSelected(appController.getPokedex().get(index).isCanEvolve());
+		numberField.setText(appController.getPokedex().get(index).getNumber() + "");
+		attackField.setText(appController.getPokedex().get(index).getAttackPoints() + "");
+		healthField.setText(appController.getPokedex().get(index).getHealthPoints() + "");
+		modifierField.setText(appController.getPokedex().get(index).getEnhancementModifier() + "");
+	}
+	
+	public PokedexPanel(PokemonController appController)
+	{
+		super();
+		this.appController = appController;
+		
+		appLayout = new SpringLayout();
+		
+		evolvableBox = new JCheckBox();
+		nameField = new JTextField("name");
+		numberField = new JTextField("##");
+		attackField = new JTextField("ap");
+		healthField = new JTextField("hp");
+		modifierField = new JTextField("mod");
+		
+		iconLabel = new JLabel("", new ImageIcon(getClass().getResource("/pokemon/view/PokeImages/poke.png")), JLabel.CENTER);
+		
+		nameLabel = new JLabel("name");
+		evolvableLabel = new JLabel("evolvable");
+		numberLabel = new JLabel("number");
+		attackLabel = new JLabel("attack");
+		healthLabel = new JLabel("health");
+		modifierLabel = new JLabel("modifier");
+		pokedexDropdown = new JComboBox();
+		clearButton = new JButton("clear");
+		saveButton = new JButton("save");
+		
+		descriptionArea = new JTextArea(5,10);
+		typeArea = new JTextArea(4,15);
+		
+		firstType = new JPanel();
+		secondType = new JPanel();
+		thirdType = new JPanel();
+		fourthType = new JPanel();
+		
+		setupComboBox();
+		setupTypePanels();
+		setupPanel();
+		setupLayout();
+		setupListeners();
+		
+	}
+	private void setupComboBox()
+	{
+		DefaultComboBoxModel pokemonModel = new DefaultComboBoxModel(appController.convertPokedex());
+		pokedexDropdown.setModel(pokemonModel);
+	}
+	
+	private void setupTypePanels()
+	{
+		firstType.setSize(50, 50);
+		secondType.setSize(50, 50);
+		thirdType.setSize(50, 50);
+		fourthType.setSize(50, 50);
+	}
+	private void setupPanel()
+	{
+		
+	}
+	private void updateImage();
+	{
+		
+	}
+	private void updateTypePanels()
+	{
+		String[] types = appController.getPokedex().get(pokedexDropdown.getSelectedIndex()).getPokemonTypes();
+		
+		if (types[0].equals("Electric"))
+		{
+			firstType.setBackground(Color.YELLOW);
+		}
+		else if (types[0].equals("Steel"))
+		{
+			firstType.setBackground(Color.GRAY);
+		}
+		else if (types[0].equals("Dark"))
+		{
+			firstType.setBackground(Color.BLACK);
+		}
+		else
+		{
+			firstType.setBackground(Color.WHITE);
+		}
+		if (types.length > 1)
+		{
+			if (types[1].equals("Electric"))
+			{
+				secondType.setBackground(Color.YELLOW);
+			}
+			else if (types[1].equals("Steel"))
+			{
+				firstType.setBackground(Color.GRAY);
+			}
+			else if (types[1].equals("Dark"))
+			{
+				firstType.setBackground(Color.BLACK);
+			}
+			else
+			{
+				firstType.setBackground(Color.WHITE);
+			}
+			if (types.length == 3)
+			{
+				if (types[2].equals("Electric"))
+				{
+					thirdType.setBackground(Color.GRAY);
+				}
+				else if (types[2].equals("Steel"))
+				{
+					firstType.setBackground(Color.GRAY);
+				}
+				else if (types[2].equals("Dark"))
+				{
+					firstType.setBackground(Color.BLACK);
+				}
+				else
+				{
+					firstType.setBackground(Color.WHITE);
+				}
+			}
+		}
+	}
+	private void setupLayout()
+	{
+		
+	}
+	private void  setupListeners()
+	{
+		pokedexDropdown.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent selection)
+						{
+							int selectedPokemonIndex = pokedexDropdown.getSelectedIndex();
+							updatePokedexInfo(selectedPokemonIndex);
+							updateImage();
+							updateTypePanels();
+							repaint();
+						}
+				});
+	}
 }

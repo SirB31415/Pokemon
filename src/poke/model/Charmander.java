@@ -25,4 +25,11 @@ public class Charmander extends Pokemon implements Fire
 	{
 		return "I bet you sooooo scared rn, just look at mah scurrry face";
 	}
+	protected void setup()
+	{
+		this.setAttackPoints(420);
+		this.setCanEvolve(true);
+		this.setEnhancementModifier(.69);
+		this.setHealthPoints(666);
+	}
 }
