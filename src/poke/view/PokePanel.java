@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import java
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -15,6 +14,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
+import javax.swing.SpringLayout;
+import javax.swing.DefaultComboBoxModel;
 
 public class PokePanel extends JPanel
 {
@@ -25,7 +27,7 @@ public class PokePanel extends JPanel
 	private JLabel attackLabel;
 	private JLabel nameLabel;
 	private JLabel numberLabel;
-	private JLabel evolveableLabel;
+	private JLabel evolvableLabel;
 	private JLabel modifierLabel;
 	private JLabel iconLabel;
 	
@@ -41,24 +43,14 @@ public class PokePanel extends JPanel
 	
 	private JButton clearButton;
 	private JButton saveButton;
-	private JComboBox pokedexDropDown;
+	private JComboBox pokedexDropdown;
 	
 	private JPanel firstType;
 	private JPanel secondType;
 	private JPanel thirdType;
 	private JPanel fourthType;
 	
-	public void updatePokedexInfo(int index)
-	{
-		nameField.setText(appController.getPokedex().get(index).getName());
-		evolvableBox.setSelected(appController.getPokedex().get(index).isCanEvolve());
-		numberField.setText(appController.getPokedex().get(index).getNumber() + "");
-		attackField.setText(appController.getPokedex().get(index).getAttackPoints() + "");
-		healthField.setText(appController.getPokedex().get(index).getHealthPoints() + "");
-		modifierField.setText(appController.getPokedex().get(index).getEnhancementModifier() + "");
-	}
-	
-	public PokedexPanel(PokemonController appController)
+	public PokePanel(PokeController appController)
 	{
 		super();
 		this.appController = appController;
@@ -97,8 +89,48 @@ public class PokePanel extends JPanel
 		setupPanel();
 		setupLayout();
 		setupListeners();
+		updateImage();
 		
 	}
+	
+	public void updatePokedexInfo(int index)
+	{
+		
+		nameField.setText(appController.getPokedex().get(index).getName());
+		evolvableBox.setSelected(appController.getPokedex().get(index).isCanEvolve());
+		numberField.setText(appController.getPokedex().get(index).getNumber() + "");
+		attackField.setText(appController.getPokedex().get(index).getAttackPoints() + "");
+		healthField.setText(appController.getPokedex().get(index).getHealthPoints() + "");
+		modifierField.setText(appController.getPokedex().get(index).getEnhancementModifier() + "");
+		
+		descriptionArea.setText(appController.getPokedex().get(index).toString());
+		typeArea.setText("");
+		
+		for (String current : appController.getPokedex().get(index).getPokemonTypes())
+		{
+			typeArea.append(current + "\n");
+		}
+	}
+	private void updateImage()
+	{
+		String path = "/poke/view/images/";
+		String defaultName = "logo";
+		String name = pokedexDropdown.getSelectedItem().toString();
+		String extension = ".png";
+		ImageIcon pokemonIcon;
+		
+		try
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + name + extension));
+		}
+		catch (NullPointerException missingImageFile)
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + defaultName + extension));
+		}
+		iconLabel.setIcon(pokemonIcon);
+	}
+	
+	
 	private void setupComboBox()
 	{
 		DefaultComboBoxModel pokemonModel = new DefaultComboBoxModel(appController.convertPokedex());
@@ -113,10 +145,6 @@ public class PokePanel extends JPanel
 		fourthType.setSize(50, 50);
 	}
 	private void setupPanel()
-	{
-		
-	}
-	private void updateImage();
 	{
 		
 	}

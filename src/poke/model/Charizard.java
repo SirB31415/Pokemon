@@ -6,25 +6,25 @@ public class Charizard extends Pokemon implements Fire
 	{
 		super(number, name);
 	}
-	public String growl()
+	public Charizard()
 	{
 		return "GRRRRRRRRRRRRRRRrrrrrrrrrrrrRRRRRRRRRRRRRRR";
+		setup();
 	}
 	
-	public String dragonRage(String rage)
+	public Charizard(String rage)
 	{
+		return "OMG I'm soooooo angry";
 		if (rage.equals("calvin"))
 		{
 			return "ikr, calvin's the worst";
 		}
-		else
-		{
-			return "OMG I'm soooooo angry";
-		}
+		setup();
 	}
-	public String scaryFace()
+	public Charizard()
 	{
 		return "I'm making such a scary face rn, you should be very scared, I win this fight.";
+		setup();
 	}
 	protected void setup()
 	{
