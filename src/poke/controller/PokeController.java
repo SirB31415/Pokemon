@@ -36,7 +36,7 @@ public class PokeController
 	
 	public List<Pokemon> getPokedex()
 	{
-		
+		return pokedex;
 	}
 	
 	public String [] convertPokedex()
@@ -51,6 +51,15 @@ public class PokeController
 		return names;
 	}
 	
+	public boolean isValidInteger(String input)
+	{
+		return false;
+	}
+	public boolean isValidDouble(String input)
+	{
+		return false;
+	}
+	
 	public void updateSelected(int selection, int health, int attack, boolean evolve, double modify, String name)
 	{
 		Pokemon selected = pokedex.get(selection);
@@ -60,5 +69,7 @@ public class PokeController
 		selected.setEnhancementModifier(modify);
 		selected.setName(name);
 		selected.setHealthPoints(health);
+		
+		FileController.savePokemonToFile((ArrayList<Pokemon>) pokedex);
 	}
 }

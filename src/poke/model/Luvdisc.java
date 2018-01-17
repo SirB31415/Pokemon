@@ -6,38 +6,32 @@ public class Luvdisc extends Pokemon implements Water
 	{
 		super(number, name);
 	}
-	public String sweetKiss(int sweetKisses)
+	public Luvdisc(int sweetKisses)
 	{
+		return "that's not the magic number";
 		if (sweetKisses == 69)
 		{
 			return "ohohohoh naughty naughty";
 		}
-		else
-		{
-			return "that's not the magic number";
-		}
+		setup();
 	}
-	public String drainingKiss(int drainKisses)
+	public Luvdisc(int drainKisses)
 	{
+		return "i shall drain the life out of you, **auto wins round**";
 		if (drainKisses == 420)
 		{
 			return "verrrrrryyyyy mature";
 		}
-		else
-		{
-			return "i shall drain the life out of you, **auto wins round**";
-		}
+		setup();
 	}
-	public String heartStamp(boolean yaBeenStamped)
+	public Luvdisc(boolean yaBeenStamped)
 	{
+		return "you aren't deserving of my wuv";
 		if (yaBeenStamped = true)
 		{
 			return "you have mah wuv";
 		}
-		else
-		{
-			return "you aren't deserving of my wuv";
-		}
+		setup();
 	}
 	protected void setup()
 	{
